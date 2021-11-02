@@ -5,7 +5,6 @@ import os
 import sys
 from bs4 import BeautifulSoup
 
-from pathlib import Path
 
 COVID19_STAT_URL = "https://moz.gov.ua/koronavirus-2019-ncov"
 BASE_EXCEL_DOC_URL = "https://moz.gov.ua"
@@ -25,7 +24,10 @@ def get_link_for_fresh_doc(
     # in case of issues with parser, look here:
 
     doc_url = (
-        BASE_EXCEL_DOC_URL + soup.find_all("h5")[2].next_sibling.next_sibling.a["href"]
+        BASE_EXCEL_DOC_URL
+        + soup.find_all("h5")[2].next_sibling.next_sibling.next_sibling.next_sibling.a[
+            "href"
+        ]
     )
 
     return doc_url
